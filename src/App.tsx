@@ -1,24 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState,useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import YesNoButton from './components/YesNoButton';
+import './App.css'; // Keep App.css for custom styles if any
 
 function App() {
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  
+  const fetchYesNo = async () => {
+    setIsLoading(true);
+    try {
+      const url =
+        Math.floor(Math.random() * 2) === 0
+          ? 'https://cataas.com/cat/gif/says/Yes?fontColor=green&fontSize=20&type=square'
+          : 'https://cataas.com/cat/gif/says/No?fontColor=red&fontSize=20&type=square';
+
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      setImageUrl(objectUrl);
+    } catch (error) {
+      console.error("Error fetching Yes/No API:", error);
+      setImageUrl(null);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+  return () => {
+    if (imageUrl) {
+      URL.revokeObjectURL(imageUrl);
+    }
+  };
+}, [imageUrl]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container d-flex flex-column justify-content-center align-items-center vh-100">
+      <h1 className="mb-4">Yes or No?</h1>
+      <YesNoButton onClick={fetchYesNo} label="Yes or No" isLoading={isLoading} />
+      {imageUrl && (
+        <div className="mt-4 text-center">
+          <img
+            src={imageUrl}
+            alt="Yes/No response"
+            className={`img-fluid rounded shadow ${isLoading ? 'spin-blur' : ''}`}
+            style={{ maxHeight: '70vh' }}
+          />
+        </div>
+      )}
     </div>
   );
 }
