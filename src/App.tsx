@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="container d-flex flex-column justify-content-center align-items-center vh-100">
       <h1 className="mb-4">Yes or No?</h1>
-      <YesNoButton onClick={fetchYesNo} label="Yes or No" isLoading={isLoading} />
+      <YesNoButton onClick={fetchYesNo} label="Ask Mighty Cat" isLoading={isLoading} />
       {imageUrl && (
         <div className="mt-4 text-center">
           <img
