@@ -12,8 +12,8 @@ function App() {
     try {
       const url =
         Math.floor(Math.random() * 2) === 0
-          ? 'https://cataas.com/cat/gif/says/Yes?fontColor=green&fontSize=20&type=square'
-          : 'https://cataas.com/cat/gif/says/No?fontColor=red&fontSize=20&type=square';
+          ? 'https://cataas.com/cat/says/Yes?fontColor=green&fontSize=20&type=square'
+          : 'https://cataas.com/cat/says/No?fontColor=red&fontSize=20&type=square';
 
       const response = await fetch(url);
       const blob = await response.blob();
