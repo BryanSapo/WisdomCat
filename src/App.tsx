@@ -38,16 +38,23 @@ function App() {
     <div className="container d-flex flex-column justify-content-center align-items-center vh-100">
       <h1 className="mb-4">Yes or No?</h1>
       <YesNoButton onClick={fetchYesNo} label="Ask Mighty Cat" isLoading={isLoading} />
-      {imageUrl && (
-        <div className="mt-4 text-center">
+      <div className="mt-4 text-center">
+        {imageUrl ? (
           <img
             src={imageUrl}
             alt="Yes/No response"
             className={`img-fluid rounded shadow ${isLoading ? 'spin-blur' : ''}`}
             style={{ maxHeight: '70vh' }}
           />
-        </div>
-      )}
+        ) : (
+          <img
+            src="/TankCat.PNG"
+            alt="Placeholder"
+            className="img-fluid rounded shadow"
+            style={{ maxHeight: '70vh' }}
+          />
+        )}
+      </div>
     </div>
   );
 }
