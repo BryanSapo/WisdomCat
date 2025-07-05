@@ -1,9 +1,12 @@
 /* App.css */
 
-/* App.css */
 
+img{
+  pointer-events: none;
+}
 /* ====== 通用樣式 (亮色主題預設) ====== */
 body {
+  user-select: none;
   background-color: #f8f9fa; /* Bootstrap 預設亮背景 */
   color: #212529;
   transition: background-color 0.3s ease, color 0.3s ease;

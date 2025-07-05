@@ -45,14 +45,15 @@ function App() {
               src={imageUrl}
               alt="Yes/No response"
               className={`img-fluid rounded shadow ${isLoading ? 'spin-blur' : ''}`}
-              style={{ maxHeight: '70vh', maxWidth: '100%' }}
+              style={{ maxHeight: '70vh', maxWidth: '100%', minHeight: '30vh' }}
             />
           ) : (
             <img
               src="/TankCat.PNG"
               alt="Placeholder"
               className="img-fluid rounded shadow"
-              style={{ maxHeight: '70vh', maxWidth: '100%' }}
+              style={{ maxHeight: '70vh', maxWidth: '100%',minHeight: '30vh' }}
+              onContextMenu={(e) => {return false}}
             />
           )}
         </div>
